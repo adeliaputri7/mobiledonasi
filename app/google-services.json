@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "279154926887",
+    "project_id": "poject-ku",
+    "storage_bucket": "poject-ku.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279154926887:android:31ae1bd2168685d381b502",
+        "android_client_info": {
+          "package_name": "com.example.pojectku"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxl3PXnM-me-hs6tfys_XjWsJYhM202BI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

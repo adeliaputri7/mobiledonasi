@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="63dp"
+            android:layout_height="88dp"
+            android:src="@drawable/ic_back2" />
+
+        <TextView
+            android:id="@+id/headerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="Donasi"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/campaignImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_palestine"/>
+
+    <!-- Campaign Title -->
+    <TextView
+        android:id="@+id/campaignTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solidaritas untuk Palestina."
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Location and Target -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <!-- Location Icon and Text -->
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Jember"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_locat"
+            android:drawablePadding="4dp"/>
+
+        <!-- Progress text and Days Left -->
+        <TextView
+            android:id="@+id/daysLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24 hari lagi"/>
+    </LinearLayout>
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="50"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Amount Raised -->
+    <TextView
+        android:id="@+id/amountRaised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Terkumpul Rp 24.000.000"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/holo_green_dark"/>
+
+    <!-- Campaign Description -->
+    <TextView
+        android:id="@+id/campaignDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Melalui penggalangan dana ini, kita memiliki kesempatan untuk memberikan bantuan dan dukungan kepada mereka yang menderita."
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"/>
+
+    <!-- Donation Button -->
+    <Button
+        android:id="@+id/donateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Donasi Sekarang"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

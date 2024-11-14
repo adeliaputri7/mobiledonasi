@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        app:srcCompat="@drawable/peduly" />
+
+    <Button
+        android:id="@+id/btn_gg"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/merah"
+        android:drawableLeft="@drawable/gg"
+        android:paddingLeft="60dp"
+        android:text="Masuk dengan google"
+        android:fontFamily="@font/poppins_semibold"
+        app:iconPadding="-20dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="10dp"
+        android:hint="Atau"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <EditText
+        android:id="@+id/edt_name"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bgcard3"
+        android:ems="10"
+        android:hint="Masukkan username"
+        android:fontFamily="@font/poppins_regular"
+        android:inputType="text"
+        android:paddingLeft="15dp" />
+
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bgcard3"
+        android:ems="10"
+        android:hint="Masukkan email"
+        android:fontFamily="@font/poppins_regular"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp" />
+
+    <EditText
+        android:id="@+id/edt_pass"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:background="@drawable/bgcard3"
+        android:paddingLeft="15dp"
+        android:hint="Masukkan password"
+        android:fontFamily="@font/poppins_regular"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_daftar"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/merah"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Daftar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="51dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Sudah punya akun?" />
+
+        <TextView
+            android:id="@+id/txt_masuk"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:text="Masuk"
+            android:textColor="@color/kuning" />
+    </LinearLayout>
+
+</LinearLayout>
