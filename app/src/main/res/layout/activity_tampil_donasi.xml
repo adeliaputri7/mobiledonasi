@@ -5,29 +5,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:padding="16dp">
+    android:padding="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp">
 
         <ImageView
             android:id="@+id/backButton"
-            android:layout_width="63dp"
-            android:layout_height="88dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_back2" />
 
         <TextView
             android:id="@+id/headerTitle"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Donasi"
             android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingRight="25dp"/>
 
 
     </LinearLayout>
@@ -64,7 +66,7 @@
             android:layout_height="wrap_content"
             android:text="Jember"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_locat"
+            android:drawableLeft="@drawable/location"
             android:drawablePadding="4dp"/>
 
         <!-- Progress text and Days Left -->
