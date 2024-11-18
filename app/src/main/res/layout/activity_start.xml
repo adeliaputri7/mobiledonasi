@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Start"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -36,6 +37,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Mudah berdonasi"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
@@ -46,28 +48,24 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/black"
         android:text="Komunitas Peduly Jember sebagai pelantara untuk melakukan donasi kapanpun dan dimanapun."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <TextView
+    <Button
         android:id="@+id/btn_join"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginEnd="175dp"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="@color/merah"
         android:text="Mulai donasi"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        android:background="@drawable/back_red"
-        android:gravity="center"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="20sp" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

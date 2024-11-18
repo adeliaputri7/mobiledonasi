@@ -1,5 +1,7 @@
 package com.example.pojectku.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,29 +10,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.pojectku.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.pojectku.Db_Contract;
+import com.example.pojectku.R;
 
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText edtname, edtemail, edtpass;
-    private Button btndaftar;
-    private TextView txtmasuk;
+    private EditText edtUser, edtPass, edtEmail, edtNotlp;
+    private Button btnDaftar;
+    private TextView txtMasuk;
 
 
     @Override
@@ -38,71 +35,69 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        edtname = findViewById(R.id.edt_name);
-        edtemail = findViewById(R.id.edt_email);
-        edtpass = findViewById(R.id.edt_pass);
-        btndaftar = findViewById(R.id.btn_daftar);
-        txtmasuk = findViewById(R.id.txt_masuk);
+        edtUser = findViewById(R.id.edt_name);
+        edtEmail = findViewById(R.id.edt_email);
+        edtPass = findViewById(R.id.edt_pass);
+        edtNotlp = findViewById(R.id.no_tlp);
+        btnDaftar = findViewById(R.id.btn_daftar);
+        txtMasuk = findViewById(R.id.txt_masuk);
 
-        txtmasuk.setOnClickListener(new View.OnClickListener() {
+
+        txtMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
 
-        btndaftar.setOnClickListener(new View.OnClickListener() {
+        btnDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nama = edtname.getText().toString();
-                String email = edtemail.getText().toString();
-                String password = edtpass.getText().toString();
+
+                String username = edtUser.getText().toString();
+                String email = edtEmail.getText().toString();
+                String password = edtPass.getText().toString();
+                String notelp = edtNotlp.getText().toString();
 
 
-                if (!email.isEmpty() && !password.isEmpty()) {
-                    // Membuat request JSON untuk login
-                    JSONObject postData = new JSONObject();
-                    try {
-                        postData.put("nama", nama);
-                        postData.put("email", email);
-                        postData.put("password", password);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                if (!(username.isEmpty() || email.isEmpty() || password.isEmpty() || notelp.isEmpty())){
 
-                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    String url = "http://10.0.2.2/my_api_android/api-register.php";  // Ganti dengan URL API Anda
-
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Db_Contract.urlRegister, new Response.Listener<String>() {
                         @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                String status = response.getString("status");
-                                String message = response.getString("message");
+                        public void onResponse(String response) {
 
-                                if ("success".equals(status)) {
-                                    Toast.makeText(getApplicationContext(), "Daftar Berhasil", Toast.LENGTH_SHORT).show();
-                                    // Pindah ke halaman utama setelah Daftar berhasil
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                } else {
-                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                            Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(), "Daftar Gagal: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    })
+                    {
+                        @Override
+                        protected HashMap<String, String> getParams() throws AuthFailureError{
+                            HashMap<String, String> params = new HashMap<>();
 
-                    // Tambahkan request ke request queue
-                    requestQueue.add(jsonObjectRequest);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Nama, Email dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                            params.put("username", username);
+                            params.put("email", email);
+                            params.put("password", password);
+                            params.put("no_telp", notelp);
+
+
+                            return params;
+                        }
+                    };
+
+                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                    requestQueue.add(stringRequest);
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Ada Data Yang Masih Kosong", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }

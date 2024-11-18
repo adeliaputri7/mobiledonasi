@@ -1,10 +1,13 @@
-package com.example.pojectku;
+package com.example.pojectku.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pojectku.R;
+import com.example.pojectku.Start;
 
 public class SplashScreenActivity extends AppCompatActivity {
     @Override
