@@ -49,7 +49,7 @@
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_back"
+            android:background="@drawable/bgcard3"
             android:ems="10"
             android:hint="Masukkan username"
             android:inputType="text"
@@ -62,7 +62,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/rounded_back"
+            android:background="@drawable/bgcard3"
             android:ems="10"
             android:hint="Masukkan email"
             android:inputType="textEmailAddress"
@@ -74,7 +74,7 @@
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:ems="10"
-            android:background="@drawable/rounded_back"
+            android:background="@drawable/bgcard3"
             android:padding="15dp"
             android:hint="Masukkan password"
             android:inputType="textPassword"
@@ -89,7 +89,7 @@
             android:padding="15dp"
             android:hint="Masukkan Nomor Telephon"
             android:inputType="phone"
-            android:background="@drawable/rounded_back"/>
+            android:background="@drawable/bgcard3"/>
 
         <Button
             android:id="@+id/btn_daftar"
