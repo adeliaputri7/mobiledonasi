@@ -7,55 +7,60 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.example.pojectku.Item.ImageSlide;
 import com.example.pojectku.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class ImageSlideAdapter extends RecyclerView.Adapter<ImageSlideAdapter.SliderViewHolder> {
+public class ImageSlideAdapter extends RecyclerView.Adapter<ImageSlideAdapter.ViewHolder> {
+    ArrayList<ImageSlide> item;
 
-    private List<ImageSlide> sliderItems;
-    private ViewPager2 viewPager2;
-    private long interval;
-    private View.OnClickListener onClickListener;
+    public ImageSlideAdapter(ArrayList<ImageSlide> item) {
 
-    public ImageSlideAdapter(List<ImageSlide> sliderItems, ViewPager2 viewPager2, long interval, View.OnClickListener onClickListener) {
-        this.sliderItems = sliderItems;
-        this.viewPager2 = viewPager2;
-        this.interval = interval;
-        this.onClickListener = onClickListener;
+        this.item = item;
     }
 
     @NonNull
     @Override
-    public SliderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_img, parent, false);
-        view.setOnClickListener(onClickListener);  // Mengatur klik listener
-        return new SliderViewHolder(view);
+    public ImageSlideAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_img,parent,false);
+
+        return new ViewHolder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
-        holder.setImage(sliderItems.get(position));
+    public void onBindViewHolder(@NonNull ImageSlideAdapter.ViewHolder holder, int position) {
+
+        int drawableResId = holder.itemView.getResources().getIdentifier(item.get(position).getPicture(),
+                "drawable", holder.itemView.getContext().getPackageName());
+
+        Glide.with(holder.itemView.getContext())
+                .load(drawableResId)
+                .transform(new CenterCrop(), new GranularRoundedCorners(40,40,40,40))
+                .into(holder.img);
+
     }
 
     @Override
     public int getItemCount() {
-        return sliderItems.size();
+        return item.size();
     }
 
-    class SliderViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        SliderViewHolder(@NonNull View itemView) {
+        ImageView img;
+
+
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.sl_image);
-        }
 
-        void setImage(ImageSlide slide) {
-            imageView.setImageResource(slide.getImageResId());
+            img=itemView.findViewById(R.id.img_1);
+
         }
     }
 }

@@ -1,41 +1,73 @@
 package com.example.pojectku.Adapter;
 
-import java.io.Serializable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class VolunteerAdapter implements Serializable {
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-    private String categori;
-    private String title;
-    private int price;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 
-    public String getCategori() {
-        return categori;
+import com.example.pojectku.Item.ItemVolunteer;
+import com.example.pojectku.R;
+
+import java.util.ArrayList;
+
+public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.ViewHolder> {
+    ArrayList<ItemVolunteer> item;
+
+    public VolunteerAdapter(ArrayList<ItemVolunteer> item) {
+
+        this.item = item;
     }
 
-    public void setCategori(String categori) {
-        this.categori = categori;
+    @NonNull
+    @Override
+    public VolunteerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_volunteer,parent,false);
+
+        return new ViewHolder(inflate);
     }
 
-    public String getTitle() {
-        return title;
+    @Override
+    public void onBindViewHolder(@NonNull VolunteerAdapter.ViewHolder holder, int position) {
+        holder.categori.setText(item.get(position).getCategori());
+        holder.title.setText(item.get(position).getTitle());
+
+        int drawableResId = holder.itemView.getResources().getIdentifier(item.get(position).getPicture(),
+                "drawable", holder.itemView.getContext().getPackageName());
+
+        Glide.with(holder.itemView.getContext())
+                .load(drawableResId)
+                .transform(new CenterCrop(), new GranularRoundedCorners(40,40,40,40))
+                .into(holder.img);
+
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public int getItemCount() {
+        return item.size();
     }
 
-    public int getPrice() {
-        return price;
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+        ImageView img;
+        TextView categori, title;
 
-    public VolunteerAdapter(String categori, String title, int price) {
-        this.categori = categori;
-        this.title = title;
-        this.price = price;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            img=itemView.findViewById(R.id.imgv_1);
+            categori=itemView.findViewById(R.id.txt_kategori);
+            title=itemView.findViewById(R.id.txt_title);
+
+        }
     }
 }
 

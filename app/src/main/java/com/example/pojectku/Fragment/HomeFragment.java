@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.example.pojectku.Adapter.DonasiAdapter;
 import com.example.pojectku.Adapter.ImageSlideAdapter;
+import com.example.pojectku.Adapter.VolunteerAdapter;
 import com.example.pojectku.Item.ImageSlide;
 import com.example.pojectku.Item.ItemDonasi;
+import com.example.pojectku.Item.ItemVolunteer;
 import com.example.pojectku.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +24,8 @@ public class HomeFragment extends Fragment {
 
     private LinearLayout lainnya;
     private LinearLayout iconTambahan;
-    private RecyclerView recycleDonasi;
-    private ViewPager2 viewPager2;
+    private RecyclerView recycleDonasi, recycleVolunteer, recycleImage;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -51,11 +53,11 @@ public class HomeFragment extends Fragment {
         lainnya = rootView.findViewById(R.id.lainnya);
         iconTambahan = rootView.findViewById(R.id.icon_tambahan);
         recycleDonasi = rootView.findViewById(R.id.re_donasi);
-        viewPager2 = rootView.findViewById(R.id.view_page);
+        recycleVolunteer = rootView.findViewById(R.id.re_volunteer);
+        recycleImage = rootView.findViewById(R.id.re_img);
 
         // Inisialisasi RecyclerView dan ViewPager2
         initRecycleView();
-        initImageSlider();
 
         // Menambahkan toggle untuk ikon tambahan
         lainnya.setOnClickListener(v -> {
@@ -83,26 +85,34 @@ public class HomeFragment extends Fragment {
         // Mengatur adapter untuk RecyclerView
         DonasiAdapter adapterDonasi = new DonasiAdapter(itemList);
         recycleDonasi.setAdapter(adapterDonasi);
+
+        ArrayList<ItemVolunteer> item = new ArrayList<>();
+        item.add(new ItemVolunteer("bg_volunteer1", "Panti", "Membuat Coklat Dan Bermain", 1000));
+        item.add(new ItemVolunteer("bg_volunteer2", "Yayasan", "Melukis Botol", 1000));
+        item.add(new ItemVolunteer("bg_volunteer3", "Anak-Anak Kurang Beruntung", "Bermain Bersama", 1000));
+
+        // Mengatur LayoutManager horizontal
+        LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recycleVolunteer.setLayoutManager(layout);
+
+        // Mengatur adapter untuk RecyclerView
+        VolunteerAdapter volunteerAdapter = new VolunteerAdapter(item);
+        recycleVolunteer.setAdapter(volunteerAdapter);
+
+        ArrayList<ImageSlide> items = new ArrayList<>();
+        items.add(new ImageSlide("image1"));
+        items.add(new ImageSlide("image2"));
+        items.add(new ImageSlide("bg_volunteer1"));
+        items.add(new ImageSlide("bg_volunteer2"));
+
+        // Mengatur LayoutManager horizontal
+        LinearLayoutManager layouts = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recycleImage.setLayoutManager(layouts);
+
+        // Mengatur adapter untuk RecyclerView
+        ImageSlideAdapter imageSlideAdapter = new ImageSlideAdapter(items);
+        recycleImage.setAdapter(imageSlideAdapter);
     }
 
-    private void initImageSlider() {
-        // Data gambar slider
-        List<ImageSlide> sliderItems = new ArrayList<>();
-        sliderItems.add(new ImageSlide(R.drawable.image1));
-        sliderItems.add(new ImageSlide(R.drawable.image2));
-        sliderItems.add(new ImageSlide(R.drawable.image3));
 
-        // Mengatur adapter untuk ViewPager2
-        ImageSlideAdapter imageSlideAdapter = new ImageSlideAdapter(sliderItems, viewPager2, 3000, v -> {
-            viewPager2.setCurrentItem(1);
-        });
-
-        viewPager2.setAdapter(imageSlideAdapter);
-
-        // Mengatur jarak antar halaman
-        viewPager2.setPageTransformer((page, position) -> {
-            float offset = 20 * Math.abs(position);
-            page.setTranslationX(-offset);
-        });
-    }
 }

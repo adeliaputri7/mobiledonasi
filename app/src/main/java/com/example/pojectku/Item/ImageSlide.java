@@ -1,16 +1,20 @@
 package com.example.pojectku.Item;
 
-public class ImageSlide {
+import java.io.Serializable;
 
-    private int resourceId;
+public class ImageSlide implements Serializable {
 
-    public ImageSlide(int resourceId) {
+    private String picture;
 
-        this.resourceId = resourceId;
+    public ImageSlide(String picture) {
+        this.picture = picture;
     }
 
-    public int getImageResId() {
-        return resourceId;
+    public String getPicture() {
+        return picture;
     }
 
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 }
