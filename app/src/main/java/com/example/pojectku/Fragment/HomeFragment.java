@@ -87,9 +87,9 @@ public class HomeFragment extends Fragment {
         recycleDonasi.setAdapter(adapterDonasi);
 
         ArrayList<ItemVolunteer> item = new ArrayList<>();
-        item.add(new ItemVolunteer("bg_volunteer1", "Lingkungan", "Bagi_Bagi Makanan", 1000));
-        item.add(new ItemVolunteer("bg_volunteer2", "Lingkungan", "Menanam Tumbuhan", 1000));
-        item.add(new ItemVolunteer("bg_volunteer3", "Lingkungan", "Gotong Royong Membersihkan Sampah", 1000));
+        item.add(new ItemVolunteer("img_volunteer1", "Lingkungan", "Bagi_Bagi Makanan", 1000));
+        item.add(new ItemVolunteer("img_volunteer2", "Lingkungan", "Menanam Tumbuhan", 1000));
+        item.add(new ItemVolunteer("img_volunteer3", "Lingkungan", "Gotong Royong Membersihkan Sampah", 1000));
 
         // Mengatur LayoutManager horizontal
         LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -102,8 +102,8 @@ public class HomeFragment extends Fragment {
         ArrayList<ImageSlide> items = new ArrayList<>();
         items.add(new ImageSlide("image1"));
         items.add(new ImageSlide("image2"));
-        items.add(new ImageSlide("bg_volunteer1"));
-        items.add(new ImageSlide("bg_volunteer2"));
+        items.add(new ImageSlide("img_volunteer1"));
+        items.add(new ImageSlide("img_volunteer2"));
 
         // Mengatur LayoutManager horizontal
         LinearLayoutManager layouts = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
