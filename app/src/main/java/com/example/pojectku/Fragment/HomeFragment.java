@@ -87,9 +87,9 @@ public class HomeFragment extends Fragment {
         recycleDonasi.setAdapter(adapterDonasi);
 
         ArrayList<ItemVolunteer> item = new ArrayList<>();
-        item.add(new ItemVolunteer("bg_volunteer1", "Panti", "Membuat Coklat Dan Bermain", 1000));
-        item.add(new ItemVolunteer("bg_volunteer2", "Yayasan", "Melukis Botol", 1000));
-        item.add(new ItemVolunteer("bg_volunteer3", "Anak-Anak Kurang Beruntung", "Bermain Bersama", 1000));
+        item.add(new ItemVolunteer("bg_volunteer1", "Lingkungan", "Bagi_Bagi Makanan", 1000));
+        item.add(new ItemVolunteer("bg_volunteer2", "Lingkungan", "Menanam Tumbuhan", 1000));
+        item.add(new ItemVolunteer("bg_volunteer3", "Lingkungan", "Gotong Royong Membersihkan Sampah", 1000));
 
         // Mengatur LayoutManager horizontal
         LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
