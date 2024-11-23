@@ -49,7 +49,7 @@
 
             </LinearLayout>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -74,23 +74,24 @@
 
                         <LinearLayout
                             android:id="@+id/btn_bencana"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:orientation="vertical"
+                            android:layout_width="64dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/roundedback2"
                             android:gravity="center"
-                            android:background="@drawable/back_red">
+                            android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/flood" />
+                                android:layout_width="match_parent"
+                                android:layout_height="36dp"
+                                android:src="@drawable/ic_bencana" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="Bencana"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="10sp" />
 
                         </LinearLayout>
@@ -107,23 +108,24 @@
 
                         <LinearLayout
                             android:id="@+id/btn_kesehatan"
-                            android:layout_width="55dp"
+                            android:layout_width="62dp"
                             android:layout_height="55dp"
-                            android:orientation="vertical"
+                            android:background="@drawable/roundedback2"
                             android:gravity="center"
-                            android:background="@drawable/back_red">
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/protection" />
+                                android:layout_height="35dp"
+                                android:src="@drawable/ic_kesehatan" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="Kesehatan"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="10sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -143,19 +145,20 @@
                             android:layout_height="55dp"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:background="@drawable/back_red">
+                            android:background="@drawable/roundedback2">
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/school" />
+                                android:layout_height="39dp"
+                                android:src="@drawable/ic_edukasi" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="Edukasi"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
+                                android:fontFamily="@font/poppins_semibold"
                                 android:textSize="10sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -176,19 +179,20 @@
                             android:layout_height="55dp"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:background="@drawable/back_red">
+                            android:background="@drawable/roundedback2">
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/square" />
+                                android:layout_height="38dp"
+                                android:src="@drawable/ic_lainnya2" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="Lainnya"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
+                                android:fontFamily="@font/poppins_semibold"
                                 android:textSize="10sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -323,6 +327,7 @@
                         android:textColor="@color/black"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
+                        android:fontFamily="@font/poppins_bold"
                         android:layout_marginTop="15dp"/>
 
                     <TextView
@@ -331,6 +336,7 @@
                         android:text="Lihat Semua"
                         android:textSize="15sp"
                         android:textColor="@color/kuning"
+                        android:fontFamily="@font/poppins_bold"
                         android:layout_marginTop="15dp"/>
                 </LinearLayout>
 
@@ -357,6 +363,7 @@
                         android:textSize="15dp"
                         android:textColor="@color/black"
                         android:paddingStart="15dp"
+                        android:fontFamily="@font/poppins_bold"
                         android:paddingEnd="15dp"/>
 
                     <TextView
@@ -364,6 +371,7 @@
                         android:layout_height="wrap_content"
                         android:text="Lihat Semua"
                         android:textSize="15sp"
+                        android:fontFamily="@font/poppins_bold"
                         android:textColor="@color/kuning"/>
                 </LinearLayout>
 
@@ -381,8 +389,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="Kenali tentan Peduly Jember"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Kenali tentang Peduly Jember"
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     android:paddingStart="15dp"
@@ -422,7 +430,7 @@
                             android:text="Penyaluran dana dilakukan secara transparan."
                             android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/poppins_regular"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -449,7 +457,7 @@
                             android:text="Menambah pengalaman dengan membantu sesama."
                             android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/poppins_regular"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -475,7 +483,7 @@
                             android:text="Peduly memiliki legalitas menjalankan galang dana dan aktivitas sesuai dengan hukum yang berlaku."
                             android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/poppins_regular"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
 
                 </LinearLayout>
