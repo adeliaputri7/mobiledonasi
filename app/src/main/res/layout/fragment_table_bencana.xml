@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TableBencana"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:gravity="center">
+
+        <FrameLayout
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            >
+
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_back2" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Donasi"
+            android:paddingLeft="88dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="30sp"/>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerLayout"
+        android:padding="5dp" />
+
+</LinearLayout>

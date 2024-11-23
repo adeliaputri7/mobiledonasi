@@ -1,7 +1,10 @@
 package com.example.pojectku.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,12 +14,12 @@ import com.example.pojectku.Fragment.AccountFragment;
 import com.example.pojectku.Fragment.HomeFragment;
 import com.example.pojectku.Fragment.NotivicationFragment;
 import com.example.pojectku.R;
+import com.example.pojectku.TampilDonasi;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
-
 
 
     @Override
@@ -54,5 +57,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+
+
 }
 

@@ -5,55 +5,66 @@ import java.io.Serializable;
 public class ItemDonasi implements Serializable {
 
     private String picture;
-    private String categori;
+    private String category;
     private String title;
     private int terkumpul;
+    private boolean donasi;
 
-    public ItemDonasi(String picture, String categori, String title, int terkumpul) {
-        this.picture = picture;
-        this.categori = categori;
-        this.title = title;
+    // Konstruktor untuk ItemDonasi
+    public ItemDonasi(String picture, String category, String title, int terkumpul) {
+        this.picture = picture;  // Gambar donasi
+        this.category = category;  // Kategori donasi
+        this.title = title;  // Judul donasi
         this.terkumpul = terkumpul;
+        this.donasi = donasi;// Jumlah terkumpul
     }
 
-    public String getPicture() {
+    public boolean isDonasi() {
+        return donasi;
+    }
 
+    public void setDonasi(boolean donasi) {
+        this.donasi = donasi;
+    }
+
+    public ItemDonasi(boolean donasi) {
+        this.donasi = donasi;
+    }
+
+    // Getter dan Setter untuk picture
+    public String getPicture() {
         return picture;
     }
 
     public void setPicture(String picture) {
-
         this.picture = picture;
     }
 
-    public String getCategori() {
-
-        return categori;
+    // Getter dan Setter untuk category
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategori(String categori) {
-
-        this.categori = categori;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
+    // Getter dan Setter untuk title
     public String getTitle() {
-
         return title;
     }
 
     public void setTitle(String title) {
-
         this.title = title;
     }
 
+    // Getter dan Setter untuk terkumpul
     public int getTerkumpul() {
-
         return terkumpul;
     }
 
     public void setTerkumpul(int terkumpul) {
-
         this.terkumpul = terkumpul;
     }
-}
 
+}

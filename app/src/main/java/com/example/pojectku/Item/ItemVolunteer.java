@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class ItemVolunteer implements Serializable {
 
     private String picture;
-    private String categori;
+    private String category;
     private String title;
     private int price;
 
@@ -20,14 +20,14 @@ public class ItemVolunteer implements Serializable {
         this.picture = picture;
     }
 
-    public String getCategori() {
+    public String getCategory() {
 
-        return categori;
+        return category;
     }
 
-    public void setCategori(String categori) {
+    public void setCategory(String categori) {
 
-        this.categori = categori;
+        this.category = categori;
     }
 
     public String getTitle() {
@@ -52,7 +52,7 @@ public class ItemVolunteer implements Serializable {
 
     public ItemVolunteer(String picture, String categori, String title, int price) {
         this.picture = picture;
-        this.categori = categori;
+        this.category = category;
         this.title = title;
         this.price = price;
     }

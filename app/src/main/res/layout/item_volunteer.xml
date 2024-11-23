@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="210dp"
-    android:layout_height="210dp">
+    android:layout_height="210dp"
+    android:clickable="true"
+    android:id="@+id/item_voll"
+    android:foreground="?android:attr/selectableItemBackground">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="210dp"
+    android:layout_height="210dp"
+
+    >
 
     <ImageView
         android:id="@+id/imgv_1"
@@ -38,3 +48,5 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_kategori" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

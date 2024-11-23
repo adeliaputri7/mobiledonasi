@@ -73,6 +73,7 @@
                         android:padding="8dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_bencana"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:orientation="vertical"
@@ -105,6 +106,7 @@
                         android:padding="8dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_kesehatan"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:orientation="vertical"
@@ -136,6 +138,7 @@
                         android:padding="8dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_edukasi"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:orientation="vertical"
@@ -159,7 +162,7 @@
 
                     <!-- Tombol Lainnya -->
                     <LinearLayout
-                        android:id="@+id/lainnya"
+
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -168,6 +171,7 @@
                         android:padding="8dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_lainnya"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:orientation="vertical"
@@ -210,6 +214,7 @@
                         android:padding="8dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_panti"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:orientation="vertical"
@@ -241,6 +246,7 @@
                         android:padding="8dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_difable"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:orientation="vertical"
@@ -272,6 +278,7 @@
                         android:padding="8dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_lingkungan"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:orientation="vertical"

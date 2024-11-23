@@ -18,19 +18,17 @@
         android:theme="@style/Theme.PojectKu"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.BayarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TampilVolunteer"
+            android:exported="false" />
+        <activity
             android:name=".Start"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".Activity.SplashScreenActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".TampilDonasi"
             android:exported="false"
@@ -43,11 +41,16 @@
             android:exported="false" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
