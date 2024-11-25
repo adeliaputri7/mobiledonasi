@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.RegisterActivity"
+    android:background="@drawable/bg_register"
     android:id="@+id/reg"
     android:padding="15dp">
 
