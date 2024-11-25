@@ -1,11 +1,9 @@
 package com.example.pojectku.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,78 +11,82 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
-import com.example.pojectku.Activity.LoginActivity;
-import com.example.pojectku.Item.ItemDonasi;
 import com.example.pojectku.R;
-import com.example.pojectku.TampilDonasi;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder> {
+import java.time.Instant;
 
-    private ArrayList<ItemDonasi> itemList;
-    private Context context; // Menambahkan context
+public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.DonationViewHolder> {
 
-    // Constructor yang menerima context
-    public DonasiAdapter(Context context, ArrayList<ItemDonasi> itemList) {
+    private Context context;
+    private JSONArray donationList;
+
+
+    // Constructor
+    public DonasiAdapter(Context context, JSONArray donationList) {
         this.context = context;
-        this.itemList = itemList;
+        this.donationList = donationList;
     }
 
     @NonNull
     @Override
-    public DonasiAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_donasi, parent, false);
-        return new ViewHolder(inflate);
+    public DonationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate layout item_donation.xml
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_donasi, parent, false);
+        return new DonationViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DonasiAdapter.ViewHolder holder, int position) {
-        ItemDonasi item = itemList.get(position);
+    public void onBindViewHolder(@NonNull DonationViewHolder holder, int position) {
+        try {
+            // Get donation object
+            JSONObject donation = donationList.getJSONObject(position);
 
-        // Menyusun gambar menggunakan Glide
-        int drawableResId = holder.itemView.getResources().getIdentifier(item.getPicture(),
-                "drawable", holder.itemView.getContext().getPackageName());
+            
+            holder.Judul.setText(donation.getString("judul"));
+            holder.Kategori.setText(donation.getString("kategori"));
+            holder.Target.setText("Target: " + donation.getString("target"));
+            holder.Terkumpul.setText("Terkumpul: " + donation.getString("terkumpul"));
+            holder.Status.setText("Status: " + donation.getString("status"));
 
-        Glide.with(holder.itemView.getContext())
-                .load(drawableResId)
-                .transform(new CenterCrop(), new GranularRoundedCorners(40, 40, 40, 40))
-                .into(holder.img);
+            String imageUrl = donation.getString("image_url"); // Pastikan API mengembalikan URL gambar
+            Glide.with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.ic_imgkosong) // Placeholder jika gambar belum dimuat
+                    .error(R.drawable.ic_imgerror) // Gambar jika ada error
+                    .into(holder.Gambar);
+            
 
-        // Set data title dan category ke TextView
-        holder.title.setText(item.getTitle());
-        holder.category.setText(item.getCategory());
-
-        // Set OnClickListener untuk tiap item
-        holder.itemView.setOnClickListener(v -> {
-            // Membuat Intent untuk menampilkan detail donasi
-            Intent intent = new Intent(context, TampilDonasi.class);
-            intent.putExtra("title", item.getTitle()); // Menambahkan data title ke intent
-            intent.putExtra("category", item.getCategory()); // Menambahkan kategori
-            intent.putExtra("image", item.getPicture()); // Menambahkan ID gambar ke intent
-            context.startActivity(intent); // Memulai Activity
-        });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return donationList.length();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
-        TextView category, title;
-        Button donasi;
+    // ViewHolder class
+    public static class DonationViewHolder extends RecyclerView.ViewHolder {
+        TextView Judul, Kategori, Target, Terkumpul, Status;
+        ImageView Gambar;
 
-        public ViewHolder(@NonNull View itemView) {
+        public DonationViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.img_2);
-            category = itemView.findViewById(R.id.txt_kategori);
-            title = itemView.findViewById(R.id.txt_title);
-            donasi = itemView.findViewById(R.id.btn_donate);
+            Gambar = itemView.findViewById(R.id.img_2);
+            Judul = itemView.findViewById(R.id.txt_title);
+            Kategori = itemView.findViewById(R.id.txt_kategori);
+            Target = itemView.findViewById(R.id.txt_target);
+            Terkumpul = itemView.findViewById(R.id.txt_terkumpul);
+            Status = itemView.findViewById(R.id.txt_status);
         }
     }
 }
+
+
+

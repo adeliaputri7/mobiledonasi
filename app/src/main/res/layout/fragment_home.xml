@@ -74,15 +74,15 @@
 
                         <LinearLayout
                             android:id="@+id/btn_bencana"
-                            android:layout_width="64dp"
-                            android:layout_height="56dp"
+                            android:layout_width="55dp"
+                            android:layout_height="60dp"
                             android:background="@drawable/roundedback2"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="36dp"
+                                android:layout_height="35dp"
                                 android:src="@drawable/ic_bencana" />
 
                             <TextView
@@ -108,8 +108,8 @@
 
                         <LinearLayout
                             android:id="@+id/btn_kesehatan"
-                            android:layout_width="62dp"
-                            android:layout_height="55dp"
+                            android:layout_width="55dp"
+                            android:layout_height="60dp"
                             android:background="@drawable/roundedback2"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -142,14 +142,14 @@
                         <LinearLayout
                             android:id="@+id/btn_edukasi"
                             android:layout_width="55dp"
-                            android:layout_height="55dp"
+                            android:layout_height="60dp"
                             android:orientation="vertical"
                             android:gravity="center"
                             android:background="@drawable/roundedback2">
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="39dp"
+                                android:layout_height="35dp"
                                 android:src="@drawable/ic_edukasi" />
 
                             <TextView
@@ -176,14 +176,14 @@
                         <LinearLayout
                             android:id="@+id/btn_lainnya"
                             android:layout_width="55dp"
-                            android:layout_height="55dp"
+                            android:layout_height="60dp"
                             android:orientation="vertical"
                             android:gravity="center"
                             android:background="@drawable/roundedback2">
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="38dp"
+                                android:layout_height="35dp"
                                 android:src="@drawable/ic_lainnya2" />
 
                             <TextView

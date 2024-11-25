@@ -14,7 +14,7 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         app:srcCompat="@drawable/main_logo"
         android:layout_marginTop="30dp"/>
 
@@ -46,7 +46,7 @@
             android:fontFamily="@font/poppins_regular"/>
 
         <EditText
-            android:id="@+id/edt_name"
+            android:id="@+id/ed_nama"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
@@ -55,10 +55,12 @@
             android:hint="Masukkan username"
             android:inputType="text"
             android:padding="15dp"
-            android:fontFamily="@font/poppins_regular"/>
+            android:fontFamily="@font/poppins_regular"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
 
         <EditText
-            android:id="@+id/edt_email"
+            android:id="@+id/ed_email"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
@@ -68,10 +70,12 @@
             android:hint="Masukkan email"
             android:inputType="textEmailAddress"
             android:padding="15dp"
-            android:fontFamily="@font/poppins_regular"/>
+            android:fontFamily="@font/poppins_regular"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
 
         <EditText
-            android:id="@+id/edt_pass"
+            android:id="@+id/ed_pass"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:ems="10"
@@ -79,10 +83,12 @@
             android:padding="15dp"
             android:hint="Masukkan password"
             android:inputType="textPassword"
-            android:fontFamily="@font/poppins_regular"/>
+            android:fontFamily="@font/poppins_regular"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
 
         <EditText
-            android:id="@+id/no_tlp"
+            android:id="@+id/ed_notlp"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:ems="10"
@@ -90,7 +96,9 @@
             android:padding="15dp"
             android:hint="Masukkan Nomor Telephon"
             android:inputType="phone"
-            android:background="@drawable/bgcard3"/>
+            android:background="@drawable/bgcard3"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
 
         <Button
             android:id="@+id/btn_daftar"

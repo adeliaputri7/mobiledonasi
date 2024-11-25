@@ -1,64 +1,72 @@
 package com.example.pojectku.Item;
 
-import java.io.Serializable;
 
-public class ItemDonasi implements Serializable {
 
-    private String picture;
-    private String category;
-    private String title;
+public class ItemDonasi {
+    private String id;
+    private String gambar;
+    private String judul;
+    private String kategori;
+    private int target;
     private int terkumpul;
-    private boolean donasi;
+    private String keterangan;
+    private String status;
 
-    // Konstruktor untuk ItemDonasi
-    public ItemDonasi(String picture, String category, String title, int terkumpul) {
-        this.picture = picture;  // Gambar donasi
-        this.category = category;  // Kategori donasi
-        this.title = title;  // Judul donasi
+    public ItemDonasi(String id, String judul, String kategori, int target, int terkumpul, String keterangan, String status) {
+        this.id = id;
+        this.gambar = gambar;
+        this.judul = judul;
+        this.kategori = kategori;
+        this.target = target;
         this.terkumpul = terkumpul;
-        this.donasi = donasi;// Jumlah terkumpul
+        this.keterangan = keterangan;
+        this.status = status;
     }
 
-    public boolean isDonasi() {
-        return donasi;
+    public String getId() {
+        return id;
     }
 
-    public void setDonasi(boolean donasi) {
-        this.donasi = donasi;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public ItemDonasi(boolean donasi) {
-        this.donasi = donasi;
+    public ItemDonasi(String gambar) {
+        this.gambar = gambar;
     }
 
-    // Getter dan Setter untuk picture
-    public String getPicture() {
-        return picture;
+    public String getGambar() {
+        return gambar;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
     }
 
-    // Getter dan Setter untuk category
-    public String getCategory() {
-        return category;
+    public String getJudul() {
+        return judul;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setJudul(String judul) {
+        this.judul = judul;
     }
 
-    // Getter dan Setter untuk title
-    public String getTitle() {
-        return title;
+    public String getKategori() {
+        return kategori;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
 
-    // Getter dan Setter untuk terkumpul
+    public int getTarget() {
+        return target;
+    }
+
+    public void setTarget(int target) {
+        this.target = target;
+    }
+
     public int getTerkumpul() {
         return terkumpul;
     }
@@ -67,4 +75,19 @@ public class ItemDonasi implements Serializable {
         this.terkumpul = terkumpul;
     }
 
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

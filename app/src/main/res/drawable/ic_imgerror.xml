@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFCDD2" /> <!-- Warna merah muda terang -->
+    <size android:width="200dp" android:height="200dp" />
+    <corners android:radius="8dp" /> <!-- Sudut melengkung -->
+    <stroke android:width="2dp" android:color="#D32F2F" /> <!-- Garis tepi merah -->
+    <padding android:top="4dp" android:bottom="4dp" android:left="4dp" android:right="4dp" />
+</shape>

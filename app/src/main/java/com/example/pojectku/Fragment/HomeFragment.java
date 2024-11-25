@@ -15,14 +15,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.pojectku.Adapter.DonasiAdapter;
 import com.example.pojectku.Adapter.ImageSlideAdapter;
 import com.example.pojectku.Adapter.VolunteerAdapter;
+import com.example.pojectku.Db_Contract;
 import com.example.pojectku.Item.ImageSlide;
 import com.example.pojectku.Item.ItemDonasi;
 import com.example.pojectku.Item.ItemVolunteer;
 import com.example.pojectku.R;
 import com.example.pojectku.TampilDonasi;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +42,7 @@ public class HomeFragment extends Fragment {
     private LinearLayout lainnya;
     private LinearLayout iconTambahan, donasi, volunteer;
     private RecyclerView recycleDonasi, recycleVolunteer, recycleImage;
-
-
+    private DonasiAdapter adapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -66,7 +75,17 @@ public class HomeFragment extends Fragment {
         donasi = rootView.findViewById(R.id.item_donasi);
         volunteer = rootView.findViewById(R.id.item_voll);
 
-        initRecycleView();
+
+        recycleDonasi = rootView.findViewById(R.id.re_donasi);
+        recycleDonasi.setLayoutManager(new LinearLayoutManager(requireContext()));
+        adapter = new DonasiAdapter(requireContext(), new JSONArray()); // Placeholder kosong
+        recycleDonasi.setAdapter(adapter);
+
+
+            // Fetch data dari API
+            fetchDonations();
+
+
 
 
 
@@ -93,52 +112,37 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
-    private void initRecycleView() {
-        // Membuat data item donasi
-        {
-            ArrayList<ItemDonasi> itemList = new ArrayList<>();
-            itemList.add(new ItemDonasi("image1", "Bencana", "Solidaritas untuk Palestina.", 1000));
-            itemList.add(new ItemDonasi("image2", "Edukasi", "Berbagi 500 buku untuk saudara pelosok kita.", 1000));
-            itemList.add(new ItemDonasi("image3", "Kesehatan", "Ekplorasi keanekaragaman hayati kebun raya mangrove", 1000));
+    private void fetchDonations() {
+        String url = Db_Contract.urlDonasi; // URL API
 
-            // Mengatur LayoutManager horizontal
-            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-            recycleDonasi.setLayoutManager(layoutManager);
+        // Buat RequestQueue
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
 
-            // Mengatur adapter untuk RecyclerView
-            DonasiAdapter adapterDonasi = new DonasiAdapter(getContext(), itemList);
-            recycleDonasi.setAdapter(adapterDonasi);
-        }
-        {
-            ArrayList<ItemVolunteer> itemList = new ArrayList<>();
-            itemList.add(new ItemVolunteer("img_volunteer1", "Lingkungan", "Bagi_Bagi Makanan", 1000));
-            itemList.add(new ItemVolunteer("img_volunteer2", "Lingkungan", "Menanam Tumbuhan", 1000));
-            itemList.add(new ItemVolunteer("img_volunteer3", "Lingkungan", "Gotong Royong Membersihkan Sampah", 1000));
+        // Buat JsonObjectRequest
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        // Periksa status respons
+                        if (response.getString("status").equals("success")) {
+                            // Ambil data JSON
+                            JSONArray data = response.getJSONArray("data");
 
-            // Mengatur LayoutManager horizontal
-            LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-            recycleVolunteer.setLayoutManager(layout);
+                            // Set adapter dengan data yang didapat
+                            adapter = new DonasiAdapter(getContext(), data);
+                            recycleDonasi.setAdapter(adapter);
 
-            // Mengatur adapter untuk RecyclerView
-            VolunteerAdapter volunteerAdapter = new VolunteerAdapter(getContext(), itemList);
-            recycleVolunteer.setAdapter(volunteerAdapter);
-        }
+                        } else {
+                            Toast.makeText(getContext(), "Error: " + response.getString("message"), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(getContext(), "JSON Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> Toast.makeText(getContext(), "Network Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()
+        );
 
-        ArrayList<ImageSlide> items = new ArrayList<>();
-        items.add(new ImageSlide("image1"));
-        items.add(new ImageSlide("image2"));
-        items.add(new ImageSlide("img_volunteer1"));
-        items.add(new ImageSlide("img_volunteer2"));
-
-        // Mengatur LayoutManager horizontal
-        LinearLayoutManager layouts = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recycleImage.setLayoutManager(layouts);
-
-        // Mengatur adapter untuk RecyclerView
-        ImageSlideAdapter imageSlideAdapter = new ImageSlideAdapter(items);
-        recycleImage.setAdapter(imageSlideAdapter);
-
-
+        // Tambahkan request ke RequestQueue
+        queue.add(jsonObjectRequest);
     }
 
 
