@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         // URL API
-        String url = "http://192.168.50.29/my_api_android/api-register.php";
+        String url = "http://10.0.2.2/my_api_android/api-register.php";
 
         // Membuat body JSON
         JSONObject requestBody = new JSONObject();

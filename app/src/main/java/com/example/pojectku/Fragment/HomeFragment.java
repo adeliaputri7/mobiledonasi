@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchDonations() {
-        String url = "http://192.168.50.29/my_api_android/api-data-donasi.php"; // URL API
+        String url = "http://10.0.2.2/my_api_android/api-data-donasi.php"; // URL API
 
         // Buat RequestQueue
         RequestQueue queue = Volley.newRequestQueue(requireContext());
