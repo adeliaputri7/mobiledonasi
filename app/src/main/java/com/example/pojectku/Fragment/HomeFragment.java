@@ -1,14 +1,11 @@
 package com.example.pojectku.Fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,20 +19,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pojectku.Adapter.DonasiAdapter;
-import com.example.pojectku.Adapter.ImageSlideAdapter;
-import com.example.pojectku.Adapter.VolunteerAdapter;
-import com.example.pojectku.Db_Contract;
-import com.example.pojectku.Item.ImageSlide;
-import com.example.pojectku.Item.ItemDonasi;
-import com.example.pojectku.Item.ItemVolunteer;
 import com.example.pojectku.R;
-import com.example.pojectku.TampilDonasi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -113,7 +100,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchDonations() {
-        String url = Db_Contract.urlDonasi; // URL API
+        String url = "http://192.168.50.29/my_api_android/api-data-donasi.php"; // URL API
 
         // Buat RequestQueue
         RequestQueue queue = Volley.newRequestQueue(requireContext());
@@ -129,6 +116,10 @@ public class HomeFragment extends Fragment {
 
                             // Set adapter dengan data yang didapat
                             adapter = new DonasiAdapter(getContext(), data);
+
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                            recycleDonasi.setLayoutManager(layoutManager);
+
                             recycleDonasi.setAdapter(adapter);
 
                         } else {

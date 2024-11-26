@@ -24,6 +24,9 @@
             android:exported="false" />
         <activity
             android:name=".Start"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SplashScreenActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,12 +35,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.SplashScreenActivity"
-            android:exported="false" />
-        <activity
             android:name=".TampilDonasi"
-            android:exported="false"
-            android:theme="@style/Theme.PojectKu" />
+            android:exported="false" />
         <activity
             android:name=".Activity.LupaPassword1Activity"
             android:exported="false" />

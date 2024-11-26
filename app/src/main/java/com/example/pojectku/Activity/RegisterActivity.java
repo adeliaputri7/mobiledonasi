@@ -50,10 +50,10 @@ public class RegisterActivity extends AppCompatActivity {
 }
 
     private void registerUser() {
-        String username = edtpass.getText().toString().trim();
+        String username = edtnama.getText().toString().trim();
         String email = edtemail.getText().toString().trim();
         String password = edtpass.getText().toString().trim();
-        String no_telp = edtpass.getText().toString().trim();
+        String no_telp = edttlp.getText().toString().trim();
 
         if (username.isEmpty()) {
             edtnama.setError("Nama tidak boleh kosong");
@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         // URL API
-        String url = "http://10.0.2.2/my_api_android/api-login.php";
+        String url = "http://192.168.50.29/my_api_android/api-register.php";
 
         // Membuat body JSON
         JSONObject requestBody = new JSONObject();
@@ -103,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(RegisterActivity.this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show();
 
                             // Redirect ke MainActivity jika register berhasil
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();

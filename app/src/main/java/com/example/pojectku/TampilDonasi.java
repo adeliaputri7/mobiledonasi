@@ -28,6 +28,15 @@ public class TampilDonasi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_donasi);
 
+
+        TextView title = findViewById(R.id.txt_title);
+        TextView kategori = findViewById(R.id.txt_kategori);
+        TextView target = findViewById(R.id.txt_target);
+        TextView terkumpul = findViewById(R.id.txt_terkumpul);
+        TextView keterangan = findViewById(R.id.txt_keterangan);
+        ImageView image = findViewById(R.id.img_donasi);
+        TextView status = findViewById(R.id.txt_status);
+
         back = findViewById(R.id.backButton);
         donate = findViewById(R.id.btn_donate);
 
@@ -40,25 +49,29 @@ public class TampilDonasi extends AppCompatActivity {
         });
 
 
-        // Ambil data dari Intent
-        String title = getIntent().getStringExtra("title");
-        String category = getIntent().getStringExtra("category");
-        String imageName = getIntent().getStringExtra("image"); // Ambil nama gambar
+        Intent intent = getIntent();
+        String judul = intent.getStringExtra("judul");
+        String kategoriText = intent.getStringExtra("kategori");
+        String targetText = intent.getStringExtra("target");
+        String terkumpulText = intent.getStringExtra("terkumpul");
+        String keteranganText = intent.getStringExtra("keterangan");
+        String gambarUrl = intent.getStringExtra("gambar");
+        String statusText = intent.getStringExtra("status");
 
-        // Temukan komponen UI
-        TextView titleTextView = findViewById(R.id.txt_title);
-        TextView categoryTextView = findViewById(R.id.txt_kategori);
-        ImageView imageView = findViewById(R.id.img_donasi);
+        // Set data ke view
+        title.setText(judul);
+        kategori.setText(kategoriText);
+        target.setText(targetText);
+        terkumpul.setText(terkumpulText);
+        keterangan.setText(keteranganText);
+        status.setText(statusText);
 
-        // Set data ke UI
-        titleTextView.setText(title);
-        categoryTextView.setText(category);
-
-        // Gunakan Glide untuk memuat gambar
-        int imageResId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+        // Muat gambar menggunakan Glide
         Glide.with(this)
-                .load(imageResId)  // Menampilkan gambar berdasarkan resource ID
-                .into(imageView);
+                .load(gambarUrl)
+                .placeholder(R.drawable.ic_imgkosong)
+                .error(R.drawable.ic_imgerror)
+                .into(image);
 
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
