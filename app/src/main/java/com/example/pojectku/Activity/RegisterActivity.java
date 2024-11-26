@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-}
+    }
 
     private void registerUser() {
         String username = edtnama.getText().toString().trim();
