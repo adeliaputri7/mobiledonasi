@@ -1,58 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFF"
     tools:context=".Activity.BayarActivity">
 
-    <!-- Header -->
-    <TextView
-        android:id="@+id/tvHeader"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Pembayaran Donasi"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
+        <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mau bantu berapa?"
+        android:textSize="18sp"
+            android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:layout_marginBottom="8dp" />
 
     <EditText
-        android:id="@+id/etNominal"
-        android:layout_width="0dp"
+        android:id="@+id/et_donation_amount"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Masukkan Nominal (Rp)"
-        android:inputType="numberDecimal"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvHeader"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:hint="Rp"
+        android:inputType="number"
+        android:padding="10dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="8dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
+        android:weightSum="3">
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Rp 10.000"
+            android:tag="10000" />
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Rp 50.000"
+            android:tag="50000" />
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Rp 100.000"
+            android:tag="100000" />
+
+    </LinearLayout>
 
     <Spinner
-        android:id="@+id/spinnerPaymentMethod"
-        android:layout_width="0dp"
+        android:id="@+id/spinner_payment_method"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:entries="@array/payment_methods"
-        app:layout_constraintTop_toBottomOf="@+id/etNominal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="8dp"
+        android:prompt="@string/select_payment_method" />
 
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nomor Ponsel"
+        android:inputType="phone"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Gmail"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="8dp" />
+
+    <CheckBox
+        android:id="@+id/cb_anonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sembunyikan nama saya (donasi anonim)" />
+
+    <CheckBox
+        android:id="@+id/cb_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beri pesan atau doa" />
 
     <Button
-        android:id="@+id/btnPay"
-        android:layout_width="0dp"
+        android:id="@+id/btn_continue"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lanjutkan Pembayaran"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPaymentMethod"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="Lanjutkan pembayaran"
+        android:background="#900"
+        android:textColor="#FFF"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>

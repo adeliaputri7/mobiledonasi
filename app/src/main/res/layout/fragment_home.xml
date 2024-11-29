@@ -232,7 +232,7 @@
                             android:layout_height="55dp"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:background="@drawable/back_red">
+                            android:background="@drawable/roundedback2">
 
                             <ImageView
                                 android:layout_width="wrap_content"
