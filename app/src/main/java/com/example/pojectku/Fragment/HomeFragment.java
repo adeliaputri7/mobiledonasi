@@ -19,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pojectku.Adapter.DonasiAdapter;
+import com.example.pojectku.Adapter.VolunteerAdapter;
 import com.example.pojectku.R;
 
 import org.json.JSONArray;
@@ -29,7 +30,8 @@ public class HomeFragment extends Fragment {
     private LinearLayout lainnya;
     private LinearLayout iconTambahan, donasi, volunteer;
     private RecyclerView recycleDonasi, recycleVolunteer, recycleImage;
-    private DonasiAdapter adapter;
+    private DonasiAdapter donasiAdapter;
+    private VolunteerAdapter volunteerAdapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -59,27 +61,24 @@ public class HomeFragment extends Fragment {
         recycleDonasi = rootView.findViewById(R.id.re_donasi);
         recycleVolunteer = rootView.findViewById(R.id.re_volunteer);
         recycleImage = rootView.findViewById(R.id.re_img);
-        donasi = rootView.findViewById(R.id.item_donasi);
-        volunteer = rootView.findViewById(R.id.item_voll);
+
 
 
         recycleDonasi = rootView.findViewById(R.id.re_donasi);
         recycleDonasi.setLayoutManager(new LinearLayoutManager(requireContext()));
-        adapter = new DonasiAdapter(requireContext(), new JSONArray()); // Placeholder kosong
-        recycleDonasi.setAdapter(adapter);
+        donasiAdapter = new DonasiAdapter(requireContext(), new JSONArray()); // Placeholder kosong
+        recycleDonasi.setAdapter(donasiAdapter);
+
+        recycleVolunteer = rootView.findViewById(R.id.re_volunteer);
+        recycleVolunteer.setLayoutManager(new LinearLayoutManager(requireContext()));
+        volunteerAdapter = new VolunteerAdapter(requireContext(), new JSONArray()); // Placeholder kosong
+        recycleVolunteer.setAdapter(volunteerAdapter);
 
 
             // Fetch data dari API
             fetchDonations();
 
-
-
-
-
-
-
-
-
+            fetchVolunteer();
 
 
         if (lainnya != null) {
@@ -115,12 +114,48 @@ public class HomeFragment extends Fragment {
                             JSONArray data = response.getJSONArray("data");
 
                             // Set adapter dengan data yang didapat
-                            adapter = new DonasiAdapter(getContext(), data);
+                            donasiAdapter = new DonasiAdapter(getContext(), data);
 
                             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                             recycleDonasi.setLayoutManager(layoutManager);
 
-                            recycleDonasi.setAdapter(adapter);
+                            recycleDonasi.setAdapter(donasiAdapter);
+
+                        } else {
+                            Toast.makeText(getContext(), "Error: " + response.getString("message"), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(getContext(), "JSON Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> Toast.makeText(getContext(), "Network Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()
+        );
+
+        // Tambahkan request ke RequestQueue
+        queue.add(jsonObjectRequest);
+    }
+    private void fetchVolunteer() {
+        String url = "http://10.0.2.2/my_api_android/api-data-volunteer.php"; // URL API
+
+        // Buat RequestQueue
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
+
+        // Buat JsonObjectRequest
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        // Periksa status respons
+                        if (response.getString("status").equals("success")) {
+                            // Ambil data JSON
+                            JSONArray data = response.getJSONArray("data");
+
+                            // Set adapter dengan data yang didapat
+                            volunteerAdapter = new VolunteerAdapter(getContext(), data);
+
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                            recycleVolunteer.setLayoutManager(layoutManager);
+
+                            recycleVolunteer.setAdapter(volunteerAdapter);
 
                         } else {
                             Toast.makeText(getContext(), "Error: " + response.getString("message"), Toast.LENGTH_SHORT).show();

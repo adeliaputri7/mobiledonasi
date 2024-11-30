@@ -12,7 +12,8 @@ public class ItemDonasi {
     private String keterangan;
     private String status;
 
-    public ItemDonasi(String id, String judul, String kategori, int target, int terkumpul, String keterangan, String status) {
+
+    public ItemDonasi(String id, String gambar, String judul, String kategori, int target, int terkumpul, String keterangan, String status) {
         this.id = id;
         this.gambar = gambar;
         this.judul = judul;
@@ -29,10 +30,6 @@ public class ItemDonasi {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public ItemDonasi(String gambar) {
-        this.gambar = gambar;
     }
 
     public String getGambar() {

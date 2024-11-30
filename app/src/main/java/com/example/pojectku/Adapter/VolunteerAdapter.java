@@ -1,6 +1,5 @@
 package com.example.pojectku.Adapter;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,78 +12,102 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
-import com.example.pojectku.Item.ItemDonasi;
-import com.example.pojectku.Item.ItemVolunteer;
 import com.example.pojectku.R;
 import com.example.pojectku.TampilDonasi;
+import com.example.pojectku.TampilVolunteer;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.ViewHolder> {
+import java.time.Instant;
 
-    private ArrayList<ItemVolunteer> itemList;
-    private Context context; // Menambahkan context
+public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.VolunteerViewHolder> {
 
-    // Constructor yang menerima context
-    public VolunteerAdapter(Context context, ArrayList<ItemVolunteer> itemList) {
+    private Context context;
+    private JSONArray volunteerList;
+
+
+
+    // Constructor
+    public VolunteerAdapter(Context context, JSONArray volunteerList) {
         this.context = context;
-        this.itemList = itemList;
+        this.volunteerList = volunteerList;
     }
 
     @NonNull
     @Override
-    public VolunteerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_volunteer, parent, false);
-        return new ViewHolder(inflate);
+    public VolunteerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate layout item_donation.xml
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_volunteer, parent, false);
+        return new VolunteerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VolunteerAdapter.ViewHolder holder, int position) {
-        ItemVolunteer item = itemList.get(position);
+    public void onBindViewHolder(@NonNull VolunteerViewHolder holder, int position) {
+        try {
+            // Get donation object
+            JSONObject volunteer = volunteerList.getJSONObject(position);
 
-        // Menyusun gambar menggunakan Glide
-        int drawableResId = holder.itemView.getResources().getIdentifier(item.getPicture(),
-                "drawable", holder.itemView.getContext().getPackageName());
 
-        Glide.with(holder.itemView.getContext())
-                .load(drawableResId)
-                .transform(new CenterCrop(), new GranularRoundedCorners(40, 40, 40, 40))
-                .into(holder.img);
+            holder.Judul.setText(volunteer.getString("judul"));
+            holder.Kategori.setText(volunteer.getString("kategori"));
+            holder.Lokasi.setText(volunteer.getString("lokasi"));
+            holder.Tanggal.setText(volunteer.getString("waktu"));
 
-        // Set data title dan category ke TextView
-        holder.title.setText(item.getTitle());
-        holder.category.setText(item.getCategory());
 
-        // Set OnClickListener untuk tiap item
-        holder.itemView.setOnClickListener(v -> {
-            // Membuat Intent untuk menampilkan detail donasi
-            Intent intent = new Intent(context, TampilDonasi.class);
-            intent.putExtra("title", item.getTitle()); // Menambahkan data title ke intent
-            intent.putExtra("category", item.getCategory()); // Menambahkan kategori
-            intent.putExtra("image", item.getPicture()); // Menambahkan ID gambar ke intent
-            context.startActivity(intent); // Memulai Activity
-        });
+            String imageUrl = volunteer.getString("gambar"); // Pastikan API mengembalikan URL gambar
+            Glide.with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.ic_imgkosong) // Placeholder jika gambar belum dimuat
+                    .error(R.drawable.ic_imgerror) // Gambar jika ada error
+                    .into(holder.Gambar);
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, TampilVolunteer.class);
+                try {
+                    // Kirim data detail donasi menggunakan Intent
+
+                    intent.putExtra("judul", volunteer.getString("judul"));
+                    intent.putExtra("kategori", volunteer.getString("kategori"));
+                    intent.putExtra("target", "Rp." + volunteer.getString("target"));
+                    intent.putExtra("keterangan", "Keterangan: " + volunteer.getString("keterangan"));
+                    intent.putExtra("gambar", volunteer.getString("gambar"));
+                    intent.putExtra("waktu", "Pelaksanan: " + volunteer.getString("waktu"));
+                    context.startActivity(intent); // Mulai activity tujuan
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return volunteerList.length();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
-        TextView category, title;
+    // ViewHolder class
+    public static class VolunteerViewHolder extends RecyclerView.ViewHolder {
+        TextView Judul, Kategori, Harga, Lokasi, Tanggal, Keterangan;
+        ImageView Gambar;
 
-        public ViewHolder(@NonNull View itemView) {
+        public VolunteerViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.imgv_1);
-            category = itemView.findViewById(R.id.txt_kategori);
-            title = itemView.findViewById(R.id.txt_title);
+            Gambar = itemView.findViewById(R.id.img_3);
+            Judul = itemView.findViewById(R.id.txt_title);
+            Kategori = itemView.findViewById(R.id.txt_kategori);
+            Tanggal = itemView.findViewById(R.id.txt_tanggal);
+            Lokasi = itemView.findViewById(R.id.txt_lokasi);
         }
     }
 }
+
+
+
+
 
 

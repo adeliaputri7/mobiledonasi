@@ -5,15 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:padding="15dp">
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:id="@+id/backButton"
@@ -35,7 +34,8 @@
             android:text="Volunteer"
             android:textSize="32sp"
             android:textStyle="bold"
-            android:paddingRight="25dp"/>
+            android:paddingRight="25dp"
+            android:textColor="@color/black"/>
 
 
     </LinearLayout>
@@ -43,7 +43,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -51,8 +51,7 @@
             android:id="@+id/img_volunteer"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:contentDescription="Gambar Donasi"
-            android:scaleType="centerCrop" />
+            android:contentDescription="Gambar Donasi" />
 
 
 
@@ -61,14 +60,73 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Category"
-            android:textSize="16sp"/>
+            android:textSize="23sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title Donasi"
-            android:textSize="20sp"/>
+            android:text="Title Volunteer"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_lokasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lokasi"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tanggal"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_keterangan"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Keterangan"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_harga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Harga"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btn_ikuti"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Ikuti"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_regular"
+            android:backgroundTint="@color/merah"/>
+
     </LinearLayout>
 
 </LinearLayout>
