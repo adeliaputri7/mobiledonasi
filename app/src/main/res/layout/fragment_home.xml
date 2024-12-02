@@ -368,12 +368,12 @@
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:text="Votunteer"
-                        android:textSize="15dp"
-                        android:textColor="@color/black"
-                        android:paddingStart="15dp"
                         android:fontFamily="@font/poppins_bold"
-                        android:paddingEnd="15dp"/>
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:text="Votunteer"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
 
                     <TextView
                         android:layout_width="wrap_content"

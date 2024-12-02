@@ -18,9 +18,9 @@ public class BayarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bayar);
 
         // Inisialisasi elemen UI
-        EditText etNominal = findViewById(R.id.etNominal);
-        Spinner spinnerPaymentMethod = findViewById(R.id.spinnerPaymentMethod);
-        Button btnPay = findViewById(R.id.btnPay);
+        EditText etNominal = findViewById(R.id.et_donation_amount);
+        Spinner spinnerPaymentMethod = findViewById(R.id.spinner_payment_method);
+        Button btnPay = findViewById(R.id.btn_continue);
 
         // Tambahkan aksi pada tombol bayar
         btnPay.setOnClickListener(new View.OnClickListener() {

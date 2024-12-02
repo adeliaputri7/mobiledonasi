@@ -55,7 +55,7 @@ public class TampilVolunteer extends AppCompatActivity {
         String tanggalText = intent.getStringExtra("waktu");
         String keteranganText = intent.getStringExtra("keterangan");
         String gambarUrl = intent.getStringExtra("gambar");
-        String hargaText = intent.getStringExtra("target");
+
 
         // Set data ke view
         title.setText(judul);
@@ -63,7 +63,6 @@ public class TampilVolunteer extends AppCompatActivity {
         lokasi.setText(lokasiText);
         tanggal.setText(tanggalText);
         keterangan.setText(keteranganText);
-        harga.setText(hargaText);
 
         // Muat gambar menggunakan Glide
         Glide.with(this)

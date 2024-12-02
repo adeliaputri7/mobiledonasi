@@ -72,6 +72,8 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.DonationVi
                     intent.putExtra("terkumpul", "Terkumpul: " + donasi.getString("terkumpul"));
                     intent.putExtra("keterangan", "Keterangan: " + donasi.getString("keterangan"));
                     intent.putExtra("gambar", donasi.getString("gambar"));
+                    intent.putExtra("lokasi", "Lokasi: " + donasi.getString("lokasi"));
+                    intent.putExtra("tanggal_tenggat", "Tenggat: " + donasi.getString("tanggal_tenggat"));
                     intent.putExtra("status", "Status: " + donasi.getString("status"));
                     context.startActivity(intent); // Mulai activity tujuan
                 } catch (JSONException e) {
