@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MetodePembayaran">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+
+                <ImageView
+                    android:id="@+id/backToMenuLainnya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_back2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Pembayaran"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/iconjam" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Silahkan pilih metode pembayaran di bawah ini"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Rincian Pembayaran"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/hargaPaket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Rp1.000.000"
+                android:textColor="@color/merah" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Pilih Pembayaran"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupBank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rb_bri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="112dp"
+                    android:drawableEnd="@drawable/bri_logo"
+                    android:fontFamily="@font/poppins_medium"
+                    android:tag="BRI,PT RAHMATAN TRAVEL,12121212121212"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+                    android:id="@+id/rb_bca"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/bca_logo"
+                    android:fontFamily="@font/poppins_medium"
+                    android:tag="BCA,PT RAHMATAN TRAVEL,12121212121212"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+                    android:id="@+id/rb_mandiri"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/mandiri_logo"
+                    android:fontFamily="@font/poppins_medium"
+                    android:tag="Mandiri,PT RAHMATAN TRAVEL,12121212121212"
+                    android:textColor="@color/black" />
+
+            </RadioGroup>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_selanjutnya"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                app:cardBackgroundColor="@color/merah"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:paddingVertical="5dp"
+                    android:text="Selanjutnya"
+                    android:textColor="@color/white" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
