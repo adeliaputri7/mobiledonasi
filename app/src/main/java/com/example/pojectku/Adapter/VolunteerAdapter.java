@@ -65,14 +65,15 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.Volu
             holder.itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, TampilVolunteer.class);
                 try {
-                    // Kirim data detail donasi menggunakan Intent
 
                     intent.putExtra("judul", volunteer.getString("judul"));
                     intent.putExtra("kategori", volunteer.getString("kategori"));
-                    intent.putExtra("target", "Rp." + volunteer.getString("target"));
+                    intent.putExtra("lokasi", volunteer.getString("lokasi"));
                     intent.putExtra("keterangan", "Keterangan: " + volunteer.getString("keterangan"));
                     intent.putExtra("gambar", volunteer.getString("gambar"));
-                    intent.putExtra("waktu", "Pelaksanan: " + volunteer.getString("waktu"));
+                    intent.putExtra("waktu", "Pelaksanaan: " + volunteer.getString("waktu"));
+                    intent.putExtra("kuota", volunteer.getString("kuota"));
+                    intent.putExtra("status", volunteer.getString("status"));
                     context.startActivity(intent); // Mulai activity tujuan
                 } catch (JSONException e) {
                     e.printStackTrace();

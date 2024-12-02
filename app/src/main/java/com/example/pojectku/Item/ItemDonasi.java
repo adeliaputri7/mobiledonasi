@@ -9,17 +9,20 @@ public class ItemDonasi {
     private String kategori;
     private int target;
     private int terkumpul;
+    private String lokasi;
+    private String tanggal;
     private String keterangan;
     private String status;
 
-
-    public ItemDonasi(String id, String gambar, String judul, String kategori, int target, int terkumpul, String keterangan, String status) {
+    public ItemDonasi(String id, String gambar, String judul, String kategori, int target, int terkumpul, String lokasi, String tanggal, String keterangan, String status) {
         this.id = id;
         this.gambar = gambar;
         this.judul = judul;
         this.kategori = kategori;
         this.target = target;
         this.terkumpul = terkumpul;
+        this.lokasi = lokasi;
+        this.tanggal = tanggal;
         this.keterangan = keterangan;
         this.status = status;
     }
@@ -70,6 +73,22 @@ public class ItemDonasi {
 
     public void setTerkumpul(int terkumpul) {
         this.terkumpul = terkumpul;
+    }
+
+    public String getLokasi() {
+        return lokasi;
+    }
+
+    public void setLokasi(String lokasi) {
+        this.lokasi = lokasi;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
     }
 
     public String getKeterangan() {
