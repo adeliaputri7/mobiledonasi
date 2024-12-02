@@ -97,7 +97,7 @@
             android:ems="10"
             android:layout_marginTop="10dp"
             android:padding="15dp"
-            android:hint="Masukkan Nomor Telephon"
+            android:hint="Masukkan Nomor Telfon"
             android:textColor="@color/black"
             android:inputType="phone"
             android:background="@drawable/bgcard3"
