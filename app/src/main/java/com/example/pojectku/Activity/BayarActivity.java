@@ -69,15 +69,14 @@ public class BayarActivity extends AppCompatActivity {
         String url = "http://10.0.2.2/my_api_android/api-bank.php"; // Ganti dengan URL API Anda
 
         // Membuat request GET untuk mengambil data bank
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
                         // Mengecek apakah respons memiliki status sukses
-                        JSONObject jsonResponse = response.getJSONObject(0); // Mengambil objek pertama dalam array
-                        String status = jsonResponse.getString("status");
+                        String status = response.getString("status");
                         if (status.equals("success")) {
                             // Ambil array data bank
-                            JSONArray banks = jsonResponse.getJSONArray("data");
+                            JSONArray banks = response.getJSONArray("data");
 
                             // Menyusun nama bank untuk dimasukkan ke dalam spinner
                             bankNames.clear();
@@ -108,8 +107,9 @@ public class BayarActivity extends AppCompatActivity {
 
         // Menambahkan request ke queue Volley
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
+        requestQueue.add(jsonObjectRequest);
     }
+
 
     // Fungsi untuk mengirim pembayaran menggunakan Volley
     private void submitPayment(String selectedBank, String donationAmount) {
