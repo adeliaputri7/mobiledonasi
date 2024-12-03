@@ -36,6 +36,8 @@ public class TampilDonasi extends AppCompatActivity {
         TextView keterangan = findViewById(R.id.txt_keterangan);
         ImageView image = findViewById(R.id.img_donasi);
         TextView status = findViewById(R.id.txt_status);
+        TextView lokasi = findViewById(R.id.txt_lokasi);
+        TextView tenggat = findViewById(R.id.txt_tenggat);
 
         back = findViewById(R.id.backButton);
         donate = findViewById(R.id.btn_donate);
@@ -57,6 +59,8 @@ public class TampilDonasi extends AppCompatActivity {
         String keteranganText = intent.getStringExtra("keterangan");
         String gambarUrl = intent.getStringExtra("gambar");
         String statusText = intent.getStringExtra("status");
+        String lokasiText = intent.getStringExtra("lokasi");
+        String tenggatDate = intent.getStringExtra("tanggal_tenggat");
 
         // Set data ke view
         title.setText(judul);
@@ -65,6 +69,8 @@ public class TampilDonasi extends AppCompatActivity {
         terkumpul.setText(terkumpulText);
         keterangan.setText(keteranganText);
         status.setText(statusText);
+        lokasi.setText(lokasiText);
+        tenggat.setText(tenggatDate);
 
         // Muat gambar menggunakan Glide
         Glide.with(this)

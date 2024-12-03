@@ -1,18 +1,22 @@
 package com.example.pojectku.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pojectku.R;
+
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
@@ -62,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         // URL API
         String url = "http://10.0.2.2/my_api_android/api-login.php";
 
-        // Membuat body JSON
+        // Membuat body JSON untuk permintaan POST
         JSONObject requestBody = new JSONObject();
         try {
             requestBody.put("email", email);
@@ -71,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        // Kirim permintaan ke server
+        // Membuat request POST
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, requestBody,
                 response -> {
                     try {
@@ -80,11 +84,25 @@ public class LoginActivity extends AppCompatActivity {
                         String message = response.getString("message");
 
                         if (status.equals("success")) {
+                            // Ambil id_user dan id_donasi dari respons API
+                            int idUser = response.getJSONObject("user").getInt("id_user");
+                            String idDonasi = response.getJSONObject("user").optString("id_donasi", null);
+
+                            // Simpan id_user dan id_donasi di SharedPreferences
+                            SharedPreferences sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putInt("id_user", idUser); // Simpan ID User
+                            if (idDonasi != null) {
+                                editor.putString("id_donasi", idDonasi); // Simpan ID Donasi (jika ada)
+                            }
+                            editor.apply();
+
                             Toast.makeText(LoginActivity.this, "Login Berhasil!", Toast.LENGTH_SHORT).show();
 
                             // Redirect ke MainActivity jika login berhasil
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
+                            finish(); // Menghentikan activity login agar pengguna tidak bisa kembali
                         } else {
                             Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
                         }
@@ -103,15 +121,5 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
     }
+
 }
-
-
-
-
-
-
-
-
-
-
-

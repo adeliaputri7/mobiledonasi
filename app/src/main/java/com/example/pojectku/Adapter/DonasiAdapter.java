@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.pojectku.Activity.BayarActivity;
 import com.example.pojectku.R;
 import com.example.pojectku.TampilDonasi;
 
@@ -48,7 +49,6 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.DonationVi
             // Get donation object
             JSONObject donasi = donasiList.getJSONObject(position);
 
-
             holder.Judul.setText(donasi.getString("judul"));
             holder.Kategori.setText(donasi.getString("kategori"));
             holder.Target.setText("Target: " + donasi.getString("target"));
@@ -61,11 +61,13 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.DonationVi
                     .placeholder(R.drawable.ic_imgkosong) // Placeholder jika gambar belum dimuat
                     .error(R.drawable.ic_imgerror) // Gambar jika ada error
                     .into(holder.Gambar);
+
+            // Set click listener
             holder.itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, TampilDonasi.class);
+                Intent intent = new Intent(context, TampilDonasi.class); // Berpindah ke BayarActivity
                 try {
                     // Kirim data detail donasi menggunakan Intent
-
+                     // Kirim id_donasi
                     intent.putExtra("judul", donasi.getString("judul"));
                     intent.putExtra("kategori", donasi.getString("kategori"));
                     intent.putExtra("target", "Target: " + donasi.getString("target"));
@@ -73,9 +75,9 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.DonationVi
                     intent.putExtra("keterangan", "Keterangan: " + donasi.getString("keterangan"));
                     intent.putExtra("gambar", donasi.getString("gambar"));
                     intent.putExtra("lokasi", "Lokasi: " + donasi.getString("lokasi"));
-                    intent.putExtra("tanggal_tenggat", "Tenggat: " + donasi.getString("tanggal_tenggat"));
+                    intent.putExtra("tanggal_tenggat", "Berakhir: " + donasi.getString("tanggal_tenggat"));
                     intent.putExtra("status", "Status: " + donasi.getString("status"));
-                    context.startActivity(intent); // Mulai activity tujuan
+                    context.startActivity(intent); // Mulai activity BayarActivity
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -85,6 +87,7 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.DonationVi
             e.printStackTrace();
         }
     }
+
 
     @Override
     public int getItemCount() {
