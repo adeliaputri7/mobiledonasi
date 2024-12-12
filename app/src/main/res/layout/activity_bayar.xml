@@ -20,6 +20,12 @@
         android:textColor="@color/black"
         android:layout_marginBottom="8dp" />
 
+    <TextView
+        android:id="@+id/txt_tanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"/>
+
     <EditText
         android:id="@+id/et_donation_amount"
         android:layout_width="match_parent"

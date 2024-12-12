@@ -1,6 +1,7 @@
 package com.example.pojectku.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.pojectku.Activity.BencanaActivity;
 import com.example.pojectku.Adapter.DonasiAdapter;
 import com.example.pojectku.Adapter.VolunteerAdapter;
 import com.example.pojectku.R;
@@ -27,11 +29,12 @@ import org.json.JSONException;
 
 public class HomeFragment extends Fragment {
 
-    private LinearLayout lainnya;
+    private LinearLayout lainnya, bencana;
     private LinearLayout iconTambahan, donasi, volunteer;
     private RecyclerView recycleDonasi, recycleVolunteer, recycleImage;
     private DonasiAdapter donasiAdapter;
     private VolunteerAdapter volunteerAdapter;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -61,6 +64,13 @@ public class HomeFragment extends Fragment {
         recycleDonasi = rootView.findViewById(R.id.re_donasi);
         recycleVolunteer = rootView.findViewById(R.id.re_volunteer);
         recycleImage = rootView.findViewById(R.id.re_img);
+        bencana = rootView.findViewById(R.id.btn_bencana);
+
+        bencana.setOnClickListener(v -> {
+            // Membuat intent
+            Intent intent = new Intent(requireContext(), BencanaActivity.class);
+            startActivity(intent);
+        });
 
 
 

@@ -3,12 +3,14 @@ package com.example.pojectku;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -27,6 +29,15 @@ public class TampilDonasi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_donasi);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        int idDonasi = sharedPreferences.getInt("id_donasi", -1);
+
+        if (idDonasi == -1) {
+            Toast.makeText(this, "ID Donasi tidak ditemukan!", Toast.LENGTH_SHORT).show();
+            finish(); // Tutup activity jika id_donasi tidak ditemukan
+            return;
+        }
 
 
         TextView title = findViewById(R.id.txt_title);
@@ -52,6 +63,7 @@ public class TampilDonasi extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+        String idText = intent.getStringExtra("id_donasi");
         String judul = intent.getStringExtra("judul");
         String kategoriText = intent.getStringExtra("kategori");
         String targetText = intent.getStringExtra("target");
@@ -63,6 +75,7 @@ public class TampilDonasi extends AppCompatActivity {
         String tenggatDate = intent.getStringExtra("tanggal_tenggat");
 
         // Set data ke view
+
         title.setText(judul);
         kategori.setText(kategoriText);
         target.setText(targetText);
@@ -82,7 +95,9 @@ public class TampilDonasi extends AppCompatActivity {
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), BayarActivity.class));
+                Intent intent = new Intent(getApplicationContext(), BayarActivity.class);
+                intent.putExtra("id_donasi", idText);
+                startActivity(intent);
             }
         });
     }

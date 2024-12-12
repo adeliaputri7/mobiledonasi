@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+
+
     }
 
     private void loginUser() {
@@ -64,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // URL API
-        String url = "http://10.0.2.2/my_api_android/api-login.php";
+        String url = "http://10.0.2.2/my_api_android/api-login.php"; // Pastikan URL ini benar
 
         // Membuat body JSON untuk permintaan POST
         JSONObject requestBody = new JSONObject();
@@ -84,18 +86,15 @@ public class LoginActivity extends AppCompatActivity {
                         String message = response.getString("message");
 
                         if (status.equals("success")) {
-                            // Ambil id_user dan id_donasi dari respons API
+                            // Ambil id_user dari respons API
                             int idUser = response.getJSONObject("user").getInt("id_user");
-                            String idDonasi = response.getJSONObject("user").optString("id_donasi", null);
 
-                            // Simpan id_user dan id_donasi di SharedPreferences
+                            // Simpan id_user di SharedPreferences
                             SharedPreferences sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putInt("id_user", idUser); // Simpan ID User
-                            if (idDonasi != null) {
-                                editor.putString("id_donasi", idDonasi); // Simpan ID Donasi (jika ada)
-                            }
                             editor.apply();
+
 
                             Toast.makeText(LoginActivity.this, "Login Berhasil!", Toast.LENGTH_SHORT).show();
 
@@ -121,5 +120,4 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
     }
-
 }

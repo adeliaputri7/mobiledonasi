@@ -3,7 +3,7 @@ package com.example.pojectku.Item;
 
 
 public class ItemDonasi {
-    private String id;
+    private int id;
     private String gambar;
     private String judul;
     private String kategori;
@@ -14,7 +14,7 @@ public class ItemDonasi {
     private String keterangan;
     private String status;
 
-    public ItemDonasi(String id, String gambar, String judul, String kategori, int target, int terkumpul, String lokasi, String tanggal, String keterangan, String status) {
+    public ItemDonasi(int id, String gambar, String judul, String kategori, int target, int terkumpul, String lokasi, String tanggal, String keterangan, String status) {
         this.id = id;
         this.gambar = gambar;
         this.judul = judul;
@@ -27,11 +27,11 @@ public class ItemDonasi {
         this.status = status;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

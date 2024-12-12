@@ -1,17 +1,18 @@
 package com.example.pojectku.Activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pojectku.R;
@@ -20,48 +21,89 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class BayarActivity extends AppCompatActivity {
 
     private Spinner spinnerBank;
-    private EditText etDonationAmount; // Tambahkan EditText untuk nominal pembayaran
+    private EditText etDonationAmount;
+    private TextView tanggal;
     private int idUser;
     private int idDonasi; // ID Donasi yang diterima dari Intent
-    private ArrayList<String> bankNames = new ArrayList<>(); // Menyimpan daftar bank
+    private ArrayList<String> bankNames = new ArrayList<>();
+    private ArrayList<String> bankid = new ArrayList<>();
+    private Date currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bayar);
 
+        tanggal = findViewById(R.id.txt_tanggal);
         spinnerBank = findViewById(R.id.spinner_payment_method);
         etDonationAmount = findViewById(R.id.et_donation_amount); // Inisialisasi EditText
 
-        // Ambil ID User dari SharedPreferences
+        // Mengambil ID User dari SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        idUser = sharedPreferences.getInt("id_user", -1); // Ambil ID User yang sudah disimpan
+        idUser = sharedPreferences.getInt("id_user", -1); // Jika tidak ditemukan, default -1
 
-        // Ambil ID Donasi dan data lainnya dari Intent
-        idDonasi = getIntent().getIntExtra("id_donasi", -1);  // Ambil ID Donasi dari Intent
+        if (idUser == -1) {
+            Toast.makeText(this, "ID User tidak ditemukan!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Mengambil ID Donasi dari SharedPreferences
+        SharedPreferences sharedPreferencess = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        idDonasi = sharedPreferencess.getInt("id_donasi", -1);
+
+        if (idDonasi == -1) {
+            Toast.makeText(this, "ID Donasi tidak ditemukan!", Toast.LENGTH_SHORT).show();
+            finish(); // Tutup activity jika id_donasi tidak ditemukan
+            return;
+        }
 
         // Mengambil daftar bank dari API
         fetchBanks();
+        setCurrentDate();
 
         // Lanjutkan pembayaran button
         findViewById(R.id.btn_continue).setOnClickListener(view -> {
             // Ambil data dari spinner dan nominal pembayaran
             String selectedBank = spinnerBank.getSelectedItem().toString();
-            String donationAmount = etDonationAmount.getText().toString().trim();
+            String donationAmountStr = etDonationAmount.getText().toString().trim();
 
-            // Validasi input
-            if (donationAmount.isEmpty()) {
+            if (donationAmountStr.isEmpty()) {
                 Toast.makeText(BayarActivity.this, "Nominal pembayaran tidak boleh kosong", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            submitPayment(selectedBank, donationAmount); // Kirim pembayaran dengan nominal
+            // Mengonversi nominal pembayaran menjadi int
+            int donationAmount = 10000;
+            try {
+                donationAmount = Integer.parseInt(donationAmountStr);
+            } catch (NumberFormatException e) {
+                Toast.makeText(BayarActivity.this, "Nominal pembayaran tidak valid", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Kirim pembayaran dengan nominal
+            submitPayment(selectedBank, donationAmount);
         });
+    }
+
+    private void setCurrentDate() {
+        // Mendapatkan tanggal hari ini
+        Calendar calendar = Calendar.getInstance();
+        currentDate = calendar.getTime(); // Menyimpan objek Date
+
+        // Menampilkan tanggal pada TextView dalam format "YYYY-MM-DD"
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = sdf.format(currentDate);
+        tanggal.setText(formattedDate);
+        tanggal.setEnabled(false); // Jika tidak ingin agar pengguna mengedit tanggal
     }
 
     // Fungsi untuk mengambil daftar bank dari API
@@ -80,10 +122,13 @@ public class BayarActivity extends AppCompatActivity {
 
                             // Menyusun nama bank untuk dimasukkan ke dalam spinner
                             bankNames.clear();
+                            bankid.clear();
                             for (int i = 0; i < banks.length(); i++) {
                                 JSONObject bank = banks.getJSONObject(i);
-                                String bankName = bank.getString("payment"); // Nama bank
-                                bankNames.add(bankName); // Menambahkan nama bank ke list
+                                String namaBank = bank.getString("payment");
+                                int idBank = bank.getInt("id"); // ID bank
+                                bankNames.add(namaBank);       // Nama bank untuk ditampilkan di spinner
+                                bankid.add(String.valueOf(idBank));  // ID bank untuk dipilih pada submitPayment
                             }
 
                             // Menampilkan data ke dalam spinner
@@ -110,13 +155,18 @@ public class BayarActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-
     // Fungsi untuk mengirim pembayaran menggunakan Volley
-    private void submitPayment(String selectedBank, String donationAmount) {
+    private void submitPayment(String selectedBank, int donationAmount) {
         if (idUser == -1 || idDonasi == -1) {
             Toast.makeText(this, "ID User atau ID Donasi tidak valid", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Mengambil ID bank yang dipilih dari spinner
+        int selectedBankId = Integer.parseInt(bankid.get(spinnerBank.getSelectedItemPosition()));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = sdf.format(currentDate);
 
         // URL API pembayaran
         String url = "http://10.0.2.2/my_api_android/api-pembayaran.php"; // Ganti dengan URL API Anda
@@ -126,8 +176,9 @@ public class BayarActivity extends AppCompatActivity {
         try {
             requestBody.put("id_user", idUser);
             requestBody.put("id_donasi", idDonasi);
-            requestBody.put("bank", selectedBank);
-            requestBody.put("nominal", donationAmount); // Menambahkan nominal pembayaran ke request
+            requestBody.put("id_bank", selectedBankId);  // Mengirim ID bank (yang dipilih)
+            requestBody.put("tanggal_donasi", formattedDate);  // Mengirim tanggal dalam format timestamp atau milidetik
+            requestBody.put("nominal_donasi", donationAmount); // Menambahkan nominal pembayaran ke request
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -159,4 +210,5 @@ public class BayarActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
     }
+
 }
