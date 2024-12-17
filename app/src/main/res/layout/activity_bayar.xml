@@ -24,17 +24,32 @@
         android:id="@+id/txt_tanggal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="tanggal"
         android:inputType="date"/>
 
-    <EditText
-        android:id="@+id/et_donation_amount"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Rp"
-        android:inputType="number"
-        android:padding="10dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="8dp" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:text="Rp."
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/et_donation_amount"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:drawable/edit_text"
+            android:hint="10000"
+            android:inputType="number"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"

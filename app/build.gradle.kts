@@ -35,6 +35,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation(libs.appcompat)
@@ -51,4 +52,6 @@ dependencies {
 
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.github.bumptech.glide:glide:4.12.0")
+
+    implementation("com.midtrans:uikit:2.0.0-SANDBOX")
 }

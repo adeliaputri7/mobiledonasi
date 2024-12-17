@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pojectku.R;
+import com.midtrans.sdk.corekit.core.MidtransSDK;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,6 +70,15 @@ public class BayarActivity extends AppCompatActivity {
         fetchBanks();
         setCurrentDate();
 
+        findViewById(R.id.btn_10).setOnClickListener(view -> setDonationAmount(10000));
+        findViewById(R.id.btn_50).setOnClickListener(view -> setDonationAmount(50000));
+        findViewById(R.id.btn_100).setOnClickListener(view -> setDonationAmount(100000));
+        findViewById(R.id.btn_150).setOnClickListener(view -> setDonationAmount(150000));
+        findViewById(R.id.btn_200).setOnClickListener(view -> setDonationAmount(200000));
+        findViewById(R.id.btn_250).setOnClickListener(view -> setDonationAmount(250000));
+
+
+
         // Lanjutkan pembayaran button
         findViewById(R.id.btn_continue).setOnClickListener(view -> {
             // Ambil data dari spinner dan nominal pembayaran
@@ -81,17 +91,24 @@ public class BayarActivity extends AppCompatActivity {
             }
 
             // Mengonversi nominal pembayaran menjadi int
-            int donationAmount = 10000;
+            int donationAmount = 0;
             try {
                 donationAmount = Integer.parseInt(donationAmountStr);
             } catch (NumberFormatException e) {
                 Toast.makeText(BayarActivity.this, "Nominal pembayaran tidak valid", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (donationAmount < 10000) {
+                Toast.makeText(BayarActivity.this, "Nominal pembayaran minimal 10.000", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             // Kirim pembayaran dengan nominal
             submitPayment(selectedBank, donationAmount);
         });
+    }
+    private void setDonationAmount(int amount) {
+        etDonationAmount.setText(String.valueOf(amount)); // Mengatur nilai nominal donasi pada EditText
     }
 
     private void setCurrentDate() {
@@ -183,7 +200,6 @@ public class BayarActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        // Membuat permintaan JSON dengan Volley
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, requestBody,
                 response -> {
                     try {
@@ -191,8 +207,25 @@ public class BayarActivity extends AppCompatActivity {
                         String message = response.getString("message");
 
                         if (status.equals("success")) {
-                            Toast.makeText(BayarActivity.this, "Pembayaran Berhasil!", Toast.LENGTH_SHORT).show();
-                            // Redirect atau aksi lain setelah pembayaran berhasil
+                            // Menyusun transaksi dengan Midtrans
+                            JSONObject transactionDetails = new JSONObject();
+                            transactionDetails.put("order_id", "ORD-" + System.currentTimeMillis());
+                            transactionDetails.put("gross_amount", donationAmount);
+
+                            JSONObject customerDetails = new JSONObject();
+                            customerDetails.put("first_name", "User");
+                            customerDetails.put("email", "user@example.com");
+
+                            JSONObject paymentMethod = new JSONObject();
+                            paymentMethod.put("bank", selectedBank); // Bank yang dipilih oleh pengguna
+
+                            // Menyusun objek untuk dikirim ke Midtrans
+                            JSONObject transactionData = new JSONObject();
+                            transactionData.put("transaction_details", transactionDetails);
+                            transactionData.put("customer_details", customerDetails);
+                            transactionData.put("payment_method", paymentMethod);
+
+                            MidtransSDK.getInstance().startPaymentUiFlow(this, String.valueOf(transactionData));
                         } else {
                             Toast.makeText(BayarActivity.this, message, Toast.LENGTH_SHORT).show();
                         }
@@ -202,13 +235,12 @@ public class BayarActivity extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    error.printStackTrace();
                     Toast.makeText(BayarActivity.this, "Kesalahan koneksi: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
-        // Menambahkan permintaan ke antrian Volley
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
     }
+
 
 }
