@@ -229,6 +229,7 @@ public class BayarActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(BayarActivity.this, message, Toast.LENGTH_SHORT).show();
                         }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         Toast.makeText(BayarActivity.this, "Kesalahan parsing JSON", Toast.LENGTH_SHORT).show();
