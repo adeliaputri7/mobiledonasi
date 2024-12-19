@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,11 +21,12 @@ import com.example.pojectku.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class BencanaActivity extends AppCompatActivity {
+public class DisabilitasActivity extends AppCompatActivity {
 
     private RecyclerView recycleDonasi;
     private AdapterBencanaDLS donasiAdapter;
     private LinearLayout kembali;
+    private TextView judul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,11 @@ public class BencanaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bencana); // Pastikan layout sesuai dengan activity ini
 
         recycleDonasi = findViewById(R.id.re_bencana); // Inisialisasi RecyclerView
+        judul = findViewById(R.id.headerTitle);
+
+        judul.setText("Disabilitas");
+        judul.setTextSize(32);
+        judul.setTextColor(getResources().getColor(android.R.color.black));
 
         // Set LayoutManager untuk RecyclerView
         recycleDonasi.setLayoutManager(new LinearLayoutManager(this));
@@ -54,7 +61,7 @@ public class BencanaActivity extends AppCompatActivity {
     }
 
     private void getDonasiBencana() {
-        String url = "http://10.0.2.2/my_api_android/api-bencana.php"; // Ganti dengan URL API Anda
+        String url = "http://10.0.2.2/my_api_android/api-disabilitas.php"; // Ganti dengan URL API Anda
 
         // Membuat RequestQueue untuk Volley
         RequestQueue queue = Volley.newRequestQueue(this);

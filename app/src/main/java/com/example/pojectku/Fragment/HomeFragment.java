@@ -20,6 +20,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pojectku.Activity.BencanaActivity;
+import com.example.pojectku.Activity.DisabilitasActivity;
+import com.example.pojectku.Activity.EdukasiActivity;
+import com.example.pojectku.Activity.KesehatanActivity;
+import com.example.pojectku.Activity.LingkunganActivity;
+import com.example.pojectku.Activity.PantiActivity;
 import com.example.pojectku.Adapter.DonasiAdapter;
 import com.example.pojectku.Adapter.VolunteerAdapter;
 import com.example.pojectku.R;
@@ -29,8 +34,9 @@ import org.json.JSONException;
 
 public class HomeFragment extends Fragment {
 
-    private LinearLayout lainnya, bencana;
-    private LinearLayout iconTambahan, donasi, volunteer;
+
+    private LinearLayout iconTambahan, donasi, volunteer,lainnya, bencana, lingkungan,
+                         kesehatan, edukasi, panti, disabilitas;
     private RecyclerView recycleDonasi, recycleVolunteer, recycleImage;
     private DonasiAdapter donasiAdapter;
     private VolunteerAdapter volunteerAdapter;
@@ -65,10 +71,45 @@ public class HomeFragment extends Fragment {
         recycleVolunteer = rootView.findViewById(R.id.re_volunteer);
         recycleImage = rootView.findViewById(R.id.re_img);
         bencana = rootView.findViewById(R.id.btn_bencana);
+        lingkungan = rootView.findViewById(R.id.btn_lingkungan);
+        edukasi = rootView.findViewById(R.id.btn_edukasi);
+        kesehatan = rootView.findViewById(R.id.btn_kesehatan);
+        panti = rootView.findViewById(R.id.btn_panti);
+        disabilitas = rootView.findViewById(R.id.btn_difable);
 
         bencana.setOnClickListener(v -> {
             // Membuat intent
             Intent intent = new Intent(requireContext(), BencanaActivity.class);
+            startActivity(intent);
+        });
+
+        lingkungan.setOnClickListener(v -> {
+            // Membuat intent
+            Intent intent = new Intent(requireContext(), LingkunganActivity.class);
+            startActivity(intent);
+        });
+
+        kesehatan.setOnClickListener(v -> {
+            // Membuat intent
+            Intent intent = new Intent(requireContext(), KesehatanActivity.class);
+            startActivity(intent);
+        });
+
+        edukasi.setOnClickListener(v -> {
+            // Membuat intent
+            Intent intent = new Intent(requireContext(), EdukasiActivity.class);
+            startActivity(intent);
+        });
+
+        panti.setOnClickListener(v -> {
+            // Membuat intent
+            Intent intent = new Intent(requireContext(), PantiActivity.class);
+            startActivity(intent);
+        });
+
+        disabilitas.setOnClickListener(v -> {
+            // Membuat intent
+            Intent intent = new Intent(requireContext(), DisabilitasActivity.class);
             startActivity(intent);
         });
 

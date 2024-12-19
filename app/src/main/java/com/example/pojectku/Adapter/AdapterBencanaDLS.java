@@ -21,13 +21,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.DonationViewHolder> {
+public class AdapterBencanaDLS extends RecyclerView.Adapter<AdapterBencanaDLS.DonationViewHolder> {
 
     private Context context;
     private JSONArray donasiList;
 
     // Constructor
-    public DonasiAdapter(Context context, JSONArray donasiList) {
+    public AdapterBencanaDLS(Context context, JSONArray donasiList) {
         this.context = context;
         this.donasiList = donasiList;
     }
@@ -36,7 +36,7 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.DonationVi
     @Override
     public DonationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate layout item_donation.xml
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_donasi, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
         return new DonationViewHolder(view);
     }
     public void updateData(JSONArray newDonasiList) {
